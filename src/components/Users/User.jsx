@@ -16,6 +16,6 @@ export const User = () => {
         </p>
       </div>
     </div>
-    <img className="action" src="/assets/plus.svg" alt="Action" />
+    <img className="action" src="./img/plus.svg" alt="Action" />
   </li>;
 };
