@@ -6,6 +6,8 @@ export const Users = ({
   onChangeSearchValue,
   items,
   isLoading,
+  invites,
+  onClickInvite,
 }) => {
   return (
     <>
@@ -42,7 +44,14 @@ export const Users = ({
               );
             })
             .map((obj) => {
-              return <User key={obj.id} {...obj} />;
+              return (
+                <User
+                  onClickInvite={onClickInvite}
+                  isInvited={invites.includes(obj.id)}
+                  key={obj.id}
+                  {...obj}
+                />
+              );
             })}
         </ul>
       )}

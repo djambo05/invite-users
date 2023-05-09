@@ -2,12 +2,13 @@ import "./index.scss";
 // import Success from "./components/Sucsess";
 import { Users } from "./components/Users";
 import { useEffect, useState } from "react";
-import { on } from "events";
 
 function App() {
   const [users, setUsers] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("");
+  const [invites, setInvites] = useState([]);
+
   useEffect(() => {
     fetch(`https://reqres.in/api/users`)
       .then((res) => res.json())
@@ -20,9 +21,19 @@ function App() {
         setLoading(false);
       });
   }, []);
+
   const onChangeSearchValue = (e) => {
     setSearchValue(e.target.value);
   };
+
+  const onClickInvite = (id) => {
+    if (invites.includes(id)) {
+      setInvites((prev) => prev.filter((_id) => _id !== id));
+    } else {
+      setInvites((prev) => [...prev, id]);
+    }
+  };
+
   return (
     <div className="App">
       <Users
@@ -30,6 +41,8 @@ function App() {
         onChangeSearchValue={onChangeSearchValue}
         items={users}
         isLoading={isLoading}
+        invites={invites}
+        onClickInvite={onClickInvite}
       />
     </div>
   );
