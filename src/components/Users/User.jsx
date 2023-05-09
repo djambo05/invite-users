@@ -1,5 +1,3 @@
-import React from "react";
-
 export const User = ({
   id,
   first_name,

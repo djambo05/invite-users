@@ -1,5 +1,5 @@
 import "./index.scss";
-// import Success from "./components/Sucsess";
+import { Success } from "./components/Success";
 import { Users } from "./components/Users";
 import { useEffect, useState } from "react";
 
@@ -8,6 +8,7 @@ function App() {
   const [isLoading, setLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("");
   const [invites, setInvites] = useState([]);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     fetch(`https://reqres.in/api/users`)
@@ -34,16 +35,25 @@ function App() {
     }
   };
 
+  const onClickSendInvites = () => {
+    setSuccess(true);
+  };
+
   return (
     <div className="App">
-      <Users
-        searchValue={searchValue}
-        onChangeSearchValue={onChangeSearchValue}
-        items={users}
-        isLoading={isLoading}
-        invites={invites}
-        onClickInvite={onClickInvite}
-      />
+      {success ? (
+        <Success count={invites.length} />
+      ) : (
+        <Users
+          searchValue={searchValue}
+          onChangeSearchValue={onChangeSearchValue}
+          items={users}
+          isLoading={isLoading}
+          invites={invites}
+          onClickInvite={onClickInvite}
+          onClickSendInvites={onClickSendInvites}
+        />
+      )}
     </div>
   );
 }
