@@ -2,6 +2,7 @@ import { Skeleton } from "./Skeleton";
 import { User } from "./User";
 
 export const Users = () => {
+  let isLoading = false;
   return (
     <>
       <div className="search">
@@ -10,15 +11,18 @@ export const Users = () => {
         </svg>
         <input type="text" placeholder="Найти пользователя..." />
       </div>
-      <div className="skeleton-list">
-        <Skeleton />
-        <Skeleton />
-        <Skeleton />
-      </div>
-      <ul className="users-list">
-        <User />
-        <User />
-      </ul>
+      {isLoading ? (
+        <div className="skeleton-list">
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+        </div>
+      ) : (
+        <ul className="users-list">
+          <User />
+          <User />
+        </ul>
+      )}
       <button className="send-invite-btn">Отправить приглашение</button>
     </>
   );
