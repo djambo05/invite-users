@@ -17,6 +17,7 @@ export const Users = () => {
       </div>
       <ul className="users-list">
         <User />
+        <User />
       </ul>
       <button className="send-invite-btn">Отправить приглашение</button>
     </>
