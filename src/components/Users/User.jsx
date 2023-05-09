@@ -1,6 +1,6 @@
 import React from "react";
 
-export const User = ({ first_name, last_name, email, avatar }) => {
+export const User = ({ id, first_name, last_name, email, avatar }) => {
   return (
     <li>
       <div>

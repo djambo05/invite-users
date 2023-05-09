@@ -6,16 +6,17 @@ import { useEffect, useState } from "react";
 function App() {
   const [users, setUsers] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  console.log(users);
   useEffect(() => {
     fetch(`https://reqres.in/api/users`)
-      .then((res) => res.json)
+      .then((res) => res.json())
       .then((json) => setUsers(json.data))
       .catch((err) => {
         console.warn(err);
         alert("Ошибка при получении пользователей!");
       })
       .finally(() => {
-        setLoading(true);
+        setLoading(false);
       });
   }, []);
   return (
